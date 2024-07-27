@@ -1,0 +1,80 @@
+body {
+    background-color: #f4f9f4;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.form-container {
+    background-color: #74b49b;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px; /* Reduced width for a more compact block */
+    margin: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #f4f9f4;
+}
+
+.form-container h2 {
+    text-align: center;
+    color: #f4f9f4;
+    margin-bottom: 20px;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 8px;
+    color: #f4f9f4;
+    font-weight: bold;
+}
+
+.form-container input,
+.form-container select,
+.form-container button {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.form-container input:focus,
+.form-container select:focus,
+.form-container button:focus {
+    outline: none;
+    border-color: #00a5b5;
+    box-shadow: 0 0 5px rgba(0, 165, 181, 0.5);
+}
+
+.form-container input::placeholder,
+.form-container select {
+    color: #aaa;
+}
+
+.form-container button {
+    background-color: #fff;
+    color: #74b49b;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.form-container button:hover {
+    background-color: #f4f9f4;
+    color: #74b49b;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.form-container .radio-group {
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding:0px ; /*Reduced gap for compactness */
+}
+
+.form-container .radio-group input {
+    margin-right: 5px;
+    box-shadow: none; /* Removed box-shadow from radio buttons */
+}

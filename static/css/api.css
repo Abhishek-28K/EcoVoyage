@@ -1,8 +1,94 @@
-/* General styling for the autocomplete box */
+/* General Body Styles */
+body {
+    background-color: #f4f9f4;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.form-container {
+    background-color: #74b49b;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px; /* Reduced width for a more compact block */
+    margin: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #f4f9f4;
+}
+
+.form-container h2 {
+    text-align: center;
+    color: #f4f9f4;
+    margin-bottom: 20px;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 8px;
+    color: #f4f9f4;
+    font-weight: bold;
+}
+
+.form-container input,
+.form-container select,
+.form-container button {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.form-container input:focus,
+.form-container select:focus,
+.form-container button:focus {
+    outline: none;
+    border-color: #00a5b5;
+    box-shadow: 0 0 5px rgba(0, 165, 181, 0.5);
+}
+
+.form-container input::placeholder,
+.form-container select {
+    color: #aaa;
+}
+
+.form-container button {
+    background-color: #fff;
+    color: #74b49b;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.form-container button:hover {
+    background-color: #f4f9f4;
+    color: #74b49b;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.form-container .radio-group {
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0px; /* Reduced gap for compactness */
+}
+
+.form-container .radio-group input {
+    margin-right: 5px;
+    box-shadow: none; /* Removed box-shadow from radio buttons */
+}
+body {
+    margin: 0;
+    background: #ccc;
+}
+
+/* Autocomplete Suggestions */
 .autocomplete-suggestions {
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
     border-radius: 4px;
-    background-color: white; /* Ensure the background color is white */
+    background-color: #fff; /* Ensure background is white */
     position: absolute;
     left: 0;
     top: 100%; /* Position below the input field */
@@ -15,11 +101,10 @@
     z-index: 1000; /* Ensure it appears above other elements */
 }
 
-/* Individual suggestion item styling */
 .autocomplete-suggestion {
     font-size: 13px;
     padding: 7px;
-    background-color: white; /* Ensure background is white */
+    background-color: #fff; /* Ensure background is white */
     border-top: 1px solid #f1f1f1;
     white-space: nowrap;
     overflow: hidden;
@@ -27,20 +112,32 @@
     cursor: pointer;
 }
 
-/* Hover effect for suggestion items */
 .autocomplete-suggestion:hover {
     background-color: #d5f1f3;
     border-color: #d5f1f3;
 }
 
-/* Selected suggestion item styling */
 .autocomplete-selected,
 .autocomplete-selected:hover {
     background-color: #b2e3e7;
     border-color: #b2e3e7;
 }
 
-/* Input field styling */
+.autocomplete-suggestion-name {
+    line-height: 20px;
+}
+
+.autocomplete-suggestion-address {
+    font-size: 12px;
+    line-height: 12px;
+    color: #666;
+}
+
+.autocomplete-suggestion:first-child {
+    border: none;
+}
+
+/* Autocomplete Input */
 .locationiq-autocomplete-input {
     box-sizing: border-box;
     position: absolute;
@@ -53,28 +150,33 @@
     padding-left: 26px;
     text-indent: 6px;
     font-size: 14px;
-    background-color: transparent; /* Transparent unless expanded */
+    background-color: transparent;
     cursor: pointer;
 }
 
-/* Expanded state of the autocomplete input */
+.locationiq-autocomplete-control {
+    width: 26px;
+    height: 26px;
+    background-color: white;
+    transition: width .1s, height .1s;
+    z-index: 810;
+    box-sizing: content-box;
+}
+
 .locationiq-autocomplete-expanded {
     width: 280px;
     height: 44px;
 }
 
-/* Expanded input field styling */
 .locationiq-autocomplete-expanded .locationiq-autocomplete-input {
-    padding-right: 30px; /* Space for close button */
-    background-color: white; /* Show background color when expanded */
+    padding-right: 30px;
     padding-top: 5px;
     padding-bottom: 5px;
     line-height: 32px;
 }
 
-/* Reset control button styling */
 .locationiq-reset-control {
-    display: none; /* Do not show by default */
+    display: none;
     position: absolute;
     right: 0;
     width: 26px;
@@ -85,13 +187,9 @@
     font: normal 18px/26px 'Lucida Console', Monaco, monospace;
     background-color: transparent;
     cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
 }
 
-/* Display reset control button when expanded */
 .locationiq-autocomplete-expanded .locationiq-reset-control {
     display: table-cell;
     background-color: inherit;
@@ -99,20 +197,6 @@
     border-bottom-right-radius: 4px;
 }
 
-/* Hide reset control button when necessary */
-.locationiq-autocomplete-expanded .locationiq-reset-control.leaflet-locationiq-hidden {
-    display: none;
-}
-
-/* Vertical centering ghost element for IE8+ */
-.locationiq-reset-control:before {
-    content: '';
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-}
-
-/* Search icon styling */
 .locationiq-autocomplete-search-icon {
     position: absolute;
     height: 100%;
@@ -124,13 +208,16 @@
     padding-left: 7px;
 }
 
-/* Handling high-DPI screens */
+.locationiq-autocomplete-search-icon.leaflet-locationiq-loading {
+    background-image: url('https://maps.locationiq.com/v3/libs/autocomplete/images/loading.gif');
+}
+
 @media only screen and (min--moz-device-pixel-ratio: 1.25),
-       only screen and (-o-min-device-pixel-ratio: 2.5/2),
-       only screen and (-webkit-min-device-pixel-ratio: 1.25),
-       only screen and (min-device-pixel-ratio: 1.25),
-       only screen and (min-resolution: 120dpi),
-       only screen and (min-resolution: 1.25dppx) {
+only screen and (-o-min-device-pixel-ratio: 2.5/2),
+only screen and (-webkit-min-device-pixel-ratio: 1.25),
+only screen and (min-device-pixel-ratio: 1.25),
+only screen and (min-resolution: 120dpi),
+only screen and (min-resolution: 1.25dppx) {
     .locationiq-autocomplete-search-icon {
         background-image: url('https://maps.locationiq.com/v3/libs/autocomplete/images/search@2x.png');
     }
@@ -138,35 +225,4 @@
     .locationiq-autocomplete-search-icon.leaflet-locationiq-loading {
         background-image: url('https://maps.locationiq.com/v3/libs/autocomplete/images/loading@2x.gif');
     }
-}
-
-/* Input field focus styling */
-.locationiq-autocomplete-input:focus {
-    outline: none;
-    cursor: text;
-}
-
-/* Clear button for IE */
-.locationiq-autocomplete-input::-ms-clear {
-    display: none;
-}
-
-/* Adjustments for the main page */
-body {
-    margin: 0;
-    background: #ccc;
-}
-
-#search-box {
-    padding-left: 20px;
-    padding-top: 20px;
-    width: 400px;
-    height: 100px;
-}
-
-#result {
-    padding-left: 20px;
-    padding-top: 20px;
-    width: 400px;
-    height: 100px;
 }

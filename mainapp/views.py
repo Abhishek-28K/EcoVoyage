@@ -1,8 +1,7 @@
 from django.shortcuts import redirect, render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-import json
-
+import json,static
 def mappage(request):
     return render(request, 'mainapp/mappage.html')
 
