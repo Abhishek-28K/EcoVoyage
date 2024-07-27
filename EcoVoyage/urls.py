@@ -21,5 +21,5 @@ from mainapp import views as mviews
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', mviews.mappage, name='mappage'),
-#     path('store-distance-data/', mviews.store_distance_data, name='store_distance_data'),
+   path('store-distance-data/', mviews.store_distance_data, name='store_distance_data'),
 ]
