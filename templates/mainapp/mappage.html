@@ -403,8 +403,8 @@
             <option value="walk">Walk</option>
         </select>
         
-        <label for="is-electric">Is the transport electric?</label>
-        <select id="is-electric">
+        <label for="is_electric">Is the transport electric?</label>
+        <select id="is_electric" name ="is_electric">
             <option value="yes">Yes</option>
             <option value="no">No</option>
         </select>
@@ -465,7 +465,7 @@
                 const destinationLon = $('#search-box-destination').data('lon');
                 const date = $('#date').val();
                 const timeTaken = $('#time-taken').val();
-                const isElectric = $('input[name="is_electric"]:checked').val();
+                const isElectric = $('#is_electric').val();
                 const modeOfTransport = $('#mode-of-transport').val();
 
                 if (sourceLat && sourceLon && destinationLat && destinationLon) {
@@ -477,7 +477,7 @@
                         const distanceFormatted = distance.toFixed(2);
 
                         $.ajax({
-                            url: '{% url "store_distance_data" %}', // Use Django URL tag
+                            url: '{% url "mappage" %}', // Use Django URL tag
                             method: 'POST',
                             headers: {
                                 'X-CSRFToken': '{{ csrf_token }}' // CSRF token header
