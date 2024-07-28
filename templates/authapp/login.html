@@ -1,148 +1,147 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>EcoVoyage Login</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
             display: flex;
-            flex-direction: column;
-            height: 100vh;
             justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            /* background-image: url('{% static "images/loginpage.jpeg" %}'); */
+            margin: 0;
+            background-size: cover;
+        }
+
+        .container {
             background-color: #E5F6DF;
-        }
-
-        .login-container {
-            background-color: #00563B;
-            padding: 20px;
             border-radius: 20px;
-            max-width: 400px;
-            margin: 20px auto;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            color: #E5F6DF;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .login-container:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .login-form h2 {
+            width: 300px;
             text-align: center;
-            color: #E5F6DF;
+            position: relative;
+            color: #fff;
+            
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin-bottom: 20px;
+            flex-direction: column; 
+            background-color: #00563B;
+            border-top-right-radius: 50%;
+            border-bottom-left-radius: 50%;
+            height: 150px;
         }
 
-        .login-form label {
-            display: block;
-            margin-bottom: 8px;
-            color: #E5F6DF;
+        .logo img {
+            width: 60px;
+            height: 60px;
+            mix-blend-mode: multiply;
+        }
+
+        .logo span {
+            font-size: 24px;
             font-weight: bold;
+            margin-top: 10px;
+        }
+        #logocircle{
+            background-color: #E5F6DF;
+            border-radius: 50%;
+            display: flex;
+            align-content: center;
         }
 
-        .login-form input {
-            width: calc(100% - 20px);
-            padding: 8px;
-            margin-bottom: 16px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            background-color: #fff;
-            transition: all 0.3s ease;
+        .container h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #00563B;
         }
 
-        .login-form input:focus {
-            outline: none;
-            border-color: #00a5b5;
-            box-shadow: 0 0 5px rgba(0, 165, 181, 0.5);
+        .container p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: #00563B;
         }
 
-        .login-form input::placeholder {
+        input[type="text"],
+        input[type="password"] {
+            width: 70%;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 20px;
+            background-color: #f4f9f4;
+            color: #333;
+            border: #00563B solid 1px;
+        }
+
+        input[type="text"]::placeholder,
+        input[type="password"]::placeholder {
             color: #aaa;
         }
 
-        .login-form .show-password {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            margin-bottom: 16px;
+        button {
+            background-color: #00563B;
             color: #E5F6DF;
-        }
-
-        .login-form button {
-            background-color: #E5F6DF;
-            color: #00563B;
-            font-size: 16px;
-            cursor: pointer;
-            padding: 10px;
+            padding: 12px 20px;
+            margin: 20px 0;
             border: none;
-            border-radius: 4px;
-            width: 100%;
-            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 40%;
+            font-size: 16px;
         }
 
-        .login-form button:hover {
-            background-color: #f4f9f4;
+        button:hover {
+            background-color: #d4e9d7;
+        }
+
+        a {
             color: #00563B;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        .links {
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        .links a {
-            color: #E5F6DF;
             text-decoration: none;
+            font-size: 14px;
         }
 
-        .links a:hover {
+        a:hover {
             text-decoration: underline;
         }
 
-        .links p {
-            margin: 5px 0;
+        .links {
+            margin-top: 20px;
+        }
+        #bottomcurve{
+            border-bottom-left-radius: 70%;
+            height: 100px;
+            background-color: #E5F6DF;
+        }
+        #bottombg{
+            background-color: #00563B;
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <form class="login-form">
-            <h2>Login</h2>
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" placeholder="Enter your username" required>
-
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="Enter your password" required>
-
-            <div class="show-password">
-                <input type="checkbox" id="show-password">
-                <label for="show-password">Show Password</label>
-            </div>
-
-            <button type="submit">Login</button>
-
+    <div class="container">
+        <div class="logo">
+            <div id="logocircle"><img src="{% static 'images/logo.png' %}" alt="EcoVoyage"></div>
+            <span>EcoVoyage</span>
+        </div>
+        <h1>Welcome</h1>
+        <p>Login in to your account to continue</p>
+        <form>
+            <input type="text" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
             <div class="links">
-                <a href="#" class="forgot-password">Forgot Password?</a>
-                <p>Don't have an account? <a href="#" class="signup">Sign Up</a></p>
+                <a href="#">Forgot your password?</a>
             </div>
+            <button type="submit">LOG IN</button>
         </form>
+        <div id="bottombg"><div id="bottomcurve"><p>Don't have an account? <a href="#">Sign Up</a></p></div></div>
     </div>
-
-    <script>
-        document.getElementById('show-password').addEventListener('change', function() {
-            const passwordField = document.getElementById('password');
-            if (this.checked) {
-                passwordField.type = 'text';
-            } else {
-                passwordField.type = 'password';
-            }
-        });
-    </script>
 </body>
 </html>
