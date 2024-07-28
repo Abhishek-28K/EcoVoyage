@@ -6,3 +6,9 @@ def landingpage(request):
 
 def loginpage(request):
     return render(request,'authapp/login.html')
+
+def signinpage(request):
+    return render(request,'authapp/signinpage')
+
+def changepass(request):
+    return render(request,'authapp/changepass')

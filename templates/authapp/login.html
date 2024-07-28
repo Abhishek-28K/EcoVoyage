@@ -1,4 +1,4 @@
-{%load static%}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,19 +12,21 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            /* background-image: url('{% static "images/loginpage.jpeg" %}'); */
+            background-image: url('{% static "images/login.jpg"%}');
             margin: 0;
             background-size: cover;
         }
 
         .container {
-            background-color: #E5F6DF;
+            background-color: #FFFFFF;
             border-radius: 20px;
-            width: 300px;
+            width: 320px;
             text-align: center;
             position: relative;
-            color: #fff;
-            
+            color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 1px solid #d4e9d7;
         }
 
         .logo {
@@ -49,12 +51,17 @@
             font-size: 24px;
             font-weight: bold;
             margin-top: 10px;
+            color: #FFFFFF;
         }
-        #logocircle{
+
+        #logocircle {
             background-color: #E5F6DF;
             border-radius: 50%;
             display: flex;
             align-content: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
         }
 
         .container h1 {
@@ -74,11 +81,17 @@
             width: 70%;
             padding: 12px 15px;
             margin: 10px 0;
-            border: none;
+            border: 1px solid #00563B;
             border-radius: 20px;
             background-color: #f4f9f4;
             color: #333;
-            border: #00563B solid 1px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
         }
 
         input[type="text"]::placeholder,
@@ -94,34 +107,49 @@
             border: none;
             border-radius: 20px;
             cursor: pointer;
-            width: 40%;
+            width: 70%;
             font-size: 16px;
+            transition: background-color 0.3s, box-shadow 0.3s;
         }
 
         button:hover {
-            background-color: #d4e9d7;
+            background-color: #4CAF50;
+            box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
         }
 
         a {
             color: #00563B;
             text-decoration: none;
             font-size: 14px;
+            transition: color 0.3s;
         }
 
         a:hover {
             text-decoration: underline;
+            color: #4CAF50;
         }
 
         .links {
             margin-top: 20px;
         }
-        #bottomcurve{
+
+        #bottomcurve {
             border-bottom-left-radius: 70%;
             height: 100px;
-            background-color: #E5F6DF;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        #bottombg{
+
+        #bottombg {
             background-color: #00563B;
+        }
+
+        #bottombg p {
+            margin: 0;
+            padding: 10px 0;
+            color: #00563B;
         }
     </style>
 </head>
@@ -135,13 +163,32 @@
         <p>Login in to your account to continue</p>
         <form>
             <input type="text" placeholder="Email" required>
-            <input type="password" placeholder="Password" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <div class="links">
+                <label>
+                    <input type="checkbox" id="show-password"> Show Password
+                </label>
+            </div>
             <div class="links">
                 <a href="#">Forgot your password?</a>
             </div>
             <button type="submit">LOG IN</button>
         </form>
-        <div id="bottombg"><div id="bottomcurve"><p>Don't have an account? <a href="#">Sign Up</a></p></div></div>
+        <div id="bottombg">
+            <div id="bottomcurve">
+                <p>Don't have an account? <a href="#">Sign Up</a></p>
+            </div>
+        </div>
     </div>
+    <script>
+        document.getElementById('show-password').addEventListener('change', function() {
+            const passwordField = document.getElementById('password');
+            if (this.checked) {
+                passwordField.type = 'text';
+            } else {
+                passwordField.type = 'password';
+            }
+        });
+    </script>
 </body>
 </html>
