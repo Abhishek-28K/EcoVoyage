@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json,static
 from django.contrib import messages
+
 def mappage(request):
     return render(request, 'mainapp/mappage.html')
 
