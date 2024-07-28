@@ -19,9 +19,16 @@ from django.urls import path
 from mainapp import views as mviews
 from authapp import views as aviews
 
+#admin
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',aviews.landingpage,name="landingpage"),
-    path('mappage/', mviews.mappage, name='mappage'),
-   path('store-distance-data/', mviews.store_distance_data, name='store_distance_data'),
 ]
+
+authappurl =[path('',aviews.landingpage,name="landingpage"),
+             path('login/',aviews.loginpage,name='login'), ]
+
+mainappurl = [ path('mappage/', mviews.mappage, name='mappage'),
+               path('store-distance-data/', mviews.store_distance_data, name='store_distance_data'),
+               ]
+
+urlpatterns = urlpatterns +authappurl + mainappurl
