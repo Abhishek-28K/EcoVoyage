@@ -17,9 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from mainapp import views as mviews
+from authapp import views as aviews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', mviews.mappage, name='mappage'),
+    path('',aviews.landingpage,name="landingpage"),
+    path('mappage/', mviews.mappage, name='mappage'),
    path('store-distance-data/', mviews.store_distance_data, name='store_distance_data'),
 ]
