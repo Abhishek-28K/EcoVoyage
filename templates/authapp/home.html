@@ -4,411 +4,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'css/landingpage.css'%}">
+    <script src="{%static 'js/landingpage.js'%}"></script>
+
     <title>EcoVoyage</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            justify-content: space-between;
-            background-color: #E5F6DF;
-        }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #00563B;
-            color: #E5F6DF;
-        }
-        .navbar .logo {
-            display: flex;
-            align-items: center;
-        }
-        .navbar .logo img {
-            mix-blend-mode: multiply;
-            height: 70px;
-        }
-        .navbar h1 {
-            color: #E5F6DF;
-            margin-left: 10px;
-        }
-        .navbar .nav-links {
-            display: flex;
-            gap: 20px;
-        }
-        .navbar .nav-links ul {
-            display: flex;
-            gap: 20px;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .navbar .nav-links li {
-            margin: 0;
-        }
-        .navbar .nav-links a {
-            text-decoration: none;
-            color: #E5F6DF;
-        }
-        .navbar .nav-links a h3 {
-            margin: 0;
-        }
-        .navbar .nav-links a:hover h3 {
-            text-decoration: underline;
-        }
-        .main-content {
-            text-align: center;
-            padding: 50px;
-            flex: 1;
-        }
-        .footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #00563B;
-            color: #E5F6DF;
-        }
-        #slider {
-            min-height: 400px;
-            color: #E5F6DF;
-            position: relative;
-            overflow: hidden;
-            border-radius: 20px;
-        }
-        .slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            background-color: darkgreen;
-            mix-blend-mode: multiply;
-            transition: opacity 1s ease-in-out;
-        }
-        .slide.visible {
-            opacity: 1;
-        }
-        .dots {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-        }
-        .dot {
-            width: 15px;
-            height: 15px;
-            background-color: #E5F6DF;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-        .dot.active {
-            background-color: #00563B;
-        }
-        .arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: #E5F6DF;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            font-size: 18px;
-        }
-        .arrow.left {
-            left: 20px;
-        }
-        .arrow.right {
-            right: 20px;
-        }
-        .slide p {
-            margin: 5px 0;
-        }
-        .eco-tips {
-            background-color: #F5F5F5;
-            padding: 40px;
-            text-align: center;
-        }
-        .eco-tips h2 {
-            color: #00563B;
-            margin-bottom: 20px;
-        }
-        .tips-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
-        .tip {
-            background-color: #E5F6DF;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            flex: 1 1 calc(50% - 20px);
-            transition: transform 0.3s, box-shadow 0.3s;
-            max-width: 400px;
-        }
-        .tip:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-        .tip h3 {
-            color: #00563B;
-            margin-bottom: 10px;
-        }
-        .tip p {
-            font-size: 18px;
-            color: #333;
-            line-height: 1.6;
-        }
-        .about-us {
-         padding: 40px;
-        background-color: #F5F5F5;
-        }
-
-        .about-us h2 {
-            color: #00563B;
-            margin-bottom: 20px;
-        }
-
-        .how-to-use {
-            padding: 40px;
-            background-color: #E5F6DF;
-            text-align: center;
-        }
-
-        .how-to-use h2 {
-            color: #00563B;
-            margin-bottom: 20px;
-        }
-
-        .feature-item {
-            background-color: #F5F5F5;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .feature-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .feature-item h3 {
-            color: #00563B;
-            margin-bottom: 10px;
-        }
-
-        .feature-item p {
-            font-size: 18px;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        .what-is-app {
-            padding: 40px;
-            background-color: #F5F5F5;
-            text-align: center;
-        }
-
-        .what-is-app h2 {
-            color: #00563B;
-            margin-bottom: 20px;
-        }
-
-        .additional-features {
-            padding: 40px;
-            background-color: #E5F6DF;
-            text-align: center;
-        }
-
-        .additional-features h2 {
-            color: #00563B;
-            margin-bottom: 20px;
-        }
-
-        .additional-features ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .additional-features li {
-            font-size: 18px;
-            color: #333;
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-    </style>
 </head>
 <body>
     <header class="navbar">
         <div class="logo">
-            <img src="{%static 'images/logo.png' %}" alt="EcoVoyage Logo">
+            <img src="{% static 'images/logo.png' %}" alt="EcoVoyage Logo">
             <h1>EcoVoyage</h1>
         </div>
         <div class="nav-links">
             <ul>
                 <li><a href="#about"><h3>About Us</h3></a></li>
-                <li><a href="#eco-tips"><h3>Eco-Friendly Tips</h3></a></li>
+                <li><a href="#eco-importance"><h3>Eco-Friendly Importance</h3></a></li>
+                <li><a href="#app"><h3>About Our App</h3></a></li>
                 <li><a href="#login"><h3>Login</h3></a></li>
             </ul>
         </div>
     </header>
-    <section id="about" class="main-content" style="padding-bottom: 50px;">
+    <section id="sliding" class="main-content" style="padding-bottom: 50px;">
         <div id="slider">
-            <div class="slide visible" style="background-image: url( {%static 'images/quote1.jpg' %} );">
+            <div class="slide visible" style="background-image: url('{% static 'images/quote1.jpg' %}');">
                 <p style="font-size:50px;">Welcome to EcoVoyage</p>
                 <p style="font-size: 25px;">Plan your trips with nature in mind.</p>
                 <br><br>
                 <p style="font-size: 20px;">Nature is not a place to visit. It is home.<br>- Gary Snyder</p>
             </div>
-            <div class="slide" style="background-image: url(\{%static 'images/quote2.jpg' %});">
+            <div class="slide" style="background-image: url('{% static 'images/quote2.jpg' %}');">
                 <p style="font-size:50px;">Welcome to EcoVoyage</p>
                 <p style="font-size: 25px;">Track and reduce your travel impact with ease.</p>
                 <br><br>
-                <p style="font-size: 20px;">The Earth is what we all have in common.<br>- Wendell Berry</p>
+                <p style="font-size: 20px;">The greatest threat to our planet is the belief that someone else will save it.<br>- Robert Swan</p>
             </div>
-            <div class="slide" style="background-image: url({%static 'images/quote3.jpg' %});">
+            <div class="slide" style="background-image: url('{% static 'images/quote3.jpg' %}');">
                 <p style="font-size:50px;">Welcome to EcoVoyage</p>
-                <p style="font-size: 25px;">Get personalized tips to reduce your carbon footprint.</p>
+                <p style="font-size: 25px;">Your journey towards sustainable travel starts here.</p>
                 <br><br>
-                <p style="font-size: 20px;">Small acts, when multiplied by millions of people, can transform the world. <br>- Howard Zinn</p>
+                <p style="font-size: 20px;">Take only memories, leave only footprints.<br>- Chief Seattle</p>
             </div>
             <button class="arrow left" onclick="prevSlide()">&#10094;</button>
             <button class="arrow right" onclick="nextSlide()">&#10095;</button>
             <div class="dots">
-                <div class="dot active" onclick="setSlide(0)"></div>
-                <div class="dot" onclick="setSlide(1)"></div>
-                <div class="dot" onclick="setSlide(2)"></div>
-            </div>
-        </div>
-        <div class="about-us">
-            <h2>About Us</h2>
-            <p>Welcome to EcoVoyage, your ultimate companion for eco-friendly travel. We are dedicated to helping you reduce your carbon footprint while exploring the world. Our platform offers a range of features to make sustainable travel easy and enjoyable.</p>
-        </div>
-    
-        <!-- How to Use Our App Section -->
-        <div class="how-to-use">
-            <h2>How to Use Our App</h2>
-            <div class="how-to-use-container">
-                <div class="feature-item">
-                    <h3>Add Friends</h3>
-                    <p>Connect with friends and share your eco-friendly travel experiences. You can add friends, view their activities, and motivate each other to achieve sustainable travel goals.</p>
-                </div>
-                <div class="feature-item">
-                    <h3>Compare Leaderboards</h3>
-                    <p>Check out the leaderboards to see how you stack up against other users. Compare your eco-friendly activities daily, weekly, or monthly to see who is leading in making the most positive impact.</p>
-                </div>
-                <div class="feature-item">
-                    <h3>Earn Coins</h3>
-                    <p>Earn coins based on your trips and activities. The more eco-friendly actions you take, the more coins you collect. Coins can be redeemed for exciting rewards.</p>
-                </div>
-                <div class="feature-item">
-                    <h3>Redeem for Coupons</h3>
-                    <p>Use your earned coins to get coupons for local stores. Enjoy discounts and special offers at participating businesses as a reward for your commitment to sustainable travel.</p>
-                </div>
-            </div>
-        </div>
-    
-        <!-- What is EcoVoyage Section -->
-        <div class="what-is-app">
-            <h2>What is EcoVoyage?</h2>
-            <p>EcoVoyage is an innovative app designed to promote eco-friendly travel and help users make more sustainable choices. Through our app, you can log your trips, track your carbon footprint, receive personalized recommendations, and earn rewards for your efforts. Our mission is to make it easier for you to travel responsibly while enjoying all the benefits of exploring new places.</p>
-        </div>
-    
-        <!-- Additional Features Section -->
-        <div class="additional-features">
-            <h2>Additional Features</h2>
-            <ul>
-                <li>Real-time carbon footprint calculator for each trip.</li>
-                <li>Personalized eco-friendly travel tips based on your preferences.</li>
-                <li>Integration with local businesses to provide rewards and discounts.</li>
-                <li>Feedback system to improve recommendations and app features.</li>
-            </ul>
-            </div>
-    </section>
-    <section id="eco-tips" class="eco-tips">
-        <h2>Eco-Friendly Travel Tips</h2>
-        <div class="tips-container">
-            <div class="tip">
-                <h3>Save Green</h3>
-                <p>Make conscious choices to reduce your environmental impact. Opt for energy-efficient appliances and sustainable products to help preserve our planet.</p>
-                <p>Tip: Use reusable bags, bottles, and containers to minimize waste and avoid single-use plastics.</p>
-            </div>
-            <div class="tip">
-                <h3>Use Electric Vehicles (EVs)</h3>
-                <p>Electric vehicles (EVs) produce zero tailpipe emissions and are a great alternative to traditional gasoline-powered cars. Consider switching to an EV to reduce your carbon footprint.</p>
-                <p>Tip: Charge your EV with renewable energy sources, such as solar or wind power, to maximize its environmental benefits.</p>
-            </div>
-            <div class="tip">
-                <h3>Opt for Public Transport</h3>
-                <p>Using public transport is an effective way to reduce individual carbon emissions. Buses, trains, and subways help decrease traffic congestion and pollution.</p>
-                <p>Tip: Plan your routes in advance and use apps to find the most efficient public transport options.</p>
-            </div>
-            <div class="tip">
-                <h3>Practice Carpooling</h3>
-                <p>Carpooling with others not only reduces the number of vehicles on the road but also lowers overall emissions. Share rides with friends or colleagues to help lessen your carbon footprint.</p>
-                <p>Tip: Use carpooling apps or join local carpool groups to find others with similar routes.</p>
-            </div>
-            <div class="tip">
-                <h3>Choose Eco-Friendly Accommodations</h3>
-                <p>When booking accommodations, look for hotels and lodgings that implement eco-friendly practices, such as energy-saving measures, waste reduction programs, and eco-friendly amenities.</p>
-                <p>Tip: Look for certifications like Green Key or EarthCheck when booking your stay.</p>
-            </div>
-            <div class="tip">
-                <h3>Travel Light</h3>
-                <p>Packing light reduces the weight of your luggage, which in turn can lower the fuel consumption of your vehicle or aircraft. Aim to bring only what you need for your trip.</p>
-                <p>Tip: Choose versatile clothing items and use packing cubes to stay organized and minimize excess baggage.</p>
+                <div class="dot active" onclick="showSlide(0)"></div>
+                <div class="dot" onclick="showSlide(1)"></div>
+                <div class="dot" onclick="showSlide(2)"></div>
             </div>
         </div>
     </section>
+
+    <section id="eco-importance" class="section">
+        <h2>Eco-Friendly Importance</h2>
+        <div class="section-container">
+            <div class="item">
+                <h3>Reducing Carbon Footprint</h3>
+                <p>Eco-friendly travel helps reduce your carbon footprint, conserving the environment for future generations.</p>
+            </div>
+            <div class="item">
+                <h3>Preserving Natural Resources</h3>
+                <p>By traveling sustainably, you contribute to the preservation of natural resources and promote biodiversity.</p>
+            </div>
+            <div class="item">
+                <h3>Promoting Local Economies</h3>
+                <p>Eco-tourism supports local economies and helps communities thrive without exploiting their natural surroundings.</p>
+            </div>
+            <div class="item">
+                <h3>Enhancing Travel Experience</h3>
+                <p>Sustainable travel practices can lead to more authentic and meaningful travel experiences.</p>
+            </div>
+        </div>
+    </section>
+    <hr style="height: 4px;">
+    <section id="about" class="section">
+        <h2>About Us</h2>
+        <div class="section-container">
+            <div class="item">
+                <h3>Our Mission</h3>
+                <p>EcoVoyage aims to make sustainable travel accessible and enjoyable for everyone. We believe in the power of informed choices and strive to provide the tools necessary for eco-friendly journeys.</p>
+            </div>
+            <div class="item">
+                <h3>Our Vision</h3>
+                <p>We envision a world where travel and sustainability go hand in hand. By promoting eco-friendly travel practices, we hope to contribute to a healthier planet and a more conscientious travel culture.</p>
+            </div>
+            <div class="item">
+                <h3>Our Values</h3>
+                <p>We value sustainability, innovation, and community. These values guide us in developing tools and resources that help travelers make eco-friendly choices and foster a global community committed to preserving our planet.</p>
+            </div>
+        </div>
+    </section>
+    <hr style="height: 4px;">
+    <section id="app" class="section">
+        <h2>About Our Website</h2>
+        <div class="section-container">
+            <div class="item">
+                <h3>User Registration</h3>
+                <p>Create an account to start logging your trips and tracking your carbon footprint.</p>
+            </div>
+            <div class="item">
+                <h3>Trip Logging</h3>
+                <p>Log your trips easily and monitor your travel habits and environmental impact.</p>
+            </div>
+            <div class="item">
+                <h3>Carbon Footprint Calculator</h3>
+                <p>Use our calculator to measure your travel's carbon emissions and get tips to reduce it.</p>
+            </div>
+            <div class="item">
+                <h3>Eco-Friendly Tips</h3>
+                <p>Receive personalized recommendations for more sustainable travel choices.</p>
+            </div>
+            <div class="item">
+                <h3>Predictive Analytics</h3>
+                <p>Analyze your travel patterns and get insights on how to improve your eco-friendly habits.</p>
+            </div>
+            <div class="item">
+                <h3>Recommendation System</h3>
+                <p>Receive personalized recommendations for eco-friendly travel alternatives.</p>
+            </div>
+            <div class="item">
+                <h3>Feedback Loop</h3>
+                <p>Provide feedback to help improve the recommendations and app functionality.</p>
+            </div>
+            <div class="item">
+                <h3>Friends and Leaderboards</h3>
+                <p>Add friends, compare your eco-friendly scores, and compete on leaderboards.</p>
+            </div>
+            <div class="item">
+                <h3>Rewards System</h3>
+                <p>Earn coins based on your eco-friendly activities and redeem them for coupons at local stores.</p>
+            </div>
+        </div>
+    </section>
+
     <footer class="footer">
-        <p>&copy; 2024 EcoVoyage. All rights reserved.</p>
-    </footer> 
+        &copy; 2023 EcoVoyage. All rights reserved.
+    </footer>
     <script>
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.dot');
-
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.classList.remove('visible');
-                dots[i].classList.remove('active');
-                if (i === index) {
-                    slide.classList.add('visible');
-                    dots[i].classList.add('active');
-                }
-            });
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }
-
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            showSlide(currentSlide);
-        }
-
-        function setSlide(index) {
-            currentSlide = index;
-            showSlide(currentSlide);
-        }
-
-        setInterval(nextSlide, 5000); 
     </script>
 </body>
 </html>
