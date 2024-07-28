@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ user.username }}'s Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1 {
+            background-color: #262525;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin: 0;
+        }
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        strong {
+            color: #555;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #007bff;
+            text-decoration: none;
+            border: 1px solid #007bff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        a:hover {
+            background-color: #262525;
+            color: #fff;
+        }
+        .friend-requests, .friends-list {
+            margin-top: 20px;
+        }
+        .friend-requests ul, .friends-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .friend-requests li, .friends-list li {
+            margin: 10px 0;
+        }
+        .friend-requests button {
+            padding: 5px 10px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .friend-requests button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ user.username }}'s Profile</h1>
+        <p><strong>First name:</strong> {{ user.first_name }}</p>
+        <p><strong>Last name:</strong> {{ user.last_name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Bio:</strong> {{ profile.bio }}</p>
+        <p><strong>Location:</strong> {{ profile.location }}</p>
+        <p><strong>Birth date:</strong> {{ profile.birth_date }}</p>
+        <a href="{% url 'edit_profile' user.id %}">Edit Profile</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</body>
+</html>

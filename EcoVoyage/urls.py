@@ -16,21 +16,27 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from mainapp import views as mviews
 from authapp import views as aviews
+from mainapp import views as mviews
 
-#admin
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
-authappurl =[path('',aviews.landingpage,name="landingpage"),
-             path('login/',aviews.loginpage,name='login'), 
-             path('signup/',aviews.signinpage,name="signup"),
-             path('changepass/',aviews.changepass,name="changepass")]
+authappurl = [
+    path('', aviews.landingpage, name="landingpage"),
+    path('home/', aviews.landingpage, name='home'),
+    path('login/', aviews.loginpage, name='login'), 
+    path('signup/', aviews.signuppage, name="signup"),
+    path('changepass/', aviews.changepass, name="changepass"),
+    path('view_profile/<int:user_id>/', aviews.view_profile, name='view_profile'),
+    path('edit_profile/<int:user_id>/', aviews.edit_profile, name='edit_profile'),
+    path('logout/', aviews.user_logout, name='logout'),
+]
 
-mainappurl = [ path('mappage/', mviews.mappage, name='mappage'),
-               path('store-distance-data/', mviews.store_distance_data, name='store_distance_data'),
-               ]
+mainappurl = [
+    path('mappage/', mviews.mappage, name='mappage'),
+    path('store-distance-data/', mviews.store_distance_data, name='store_distance_data'),
+]
 
-urlpatterns = urlpatterns +authappurl + mainappurl
+urlpatterns = urlpatterns + authappurl + mainappurl

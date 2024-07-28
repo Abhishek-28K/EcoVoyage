@@ -1,38 +1,33 @@
 {% extends "authapp/base.html" %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Register{% endblock %}
 
 {% block content %}
-
-<h1>Welcome</h1>
-<p>Login to your account to continue</p>
+<h1>Register</h1>
+<p>Create your account</p>
 <form method="post">
     {% csrf_token %}
     {% if messages %}
         <div id="message-container" class="alert alert-warning" role="alert">
             {% for message in messages %}
                 {{ message }}
-            {% endfor %} 
+            {% endfor %}
         </div>
     {% endif %}
     <input type="text" placeholder="Username" id="username" name="username" required>
-    <input type="password" id="password" name="password" placeholder="Password" required>
+    <input type="email" placeholder="Email" id="email" name="email" required>
+    <input type="password" id="password" placeholder="Password" name="password" required>
     <div class="links">
         <label>
             <input type="checkbox" id="show-password"> Show Password
         </label>
     </div>
-    <div class="links">
-        <a href="{% url 'changepass' %}">Forgot your password?</a>
-    </div>
-    <button type="submit">LOG IN</button>
+    <button type="submit">REGISTER</button>
 </form>
-
 {% endblock %}
 
 {% block bottom %}
-<p>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
-<p>Click here to go <a href="{% url 'home' %}">Home</a></p>
+<p>Already have an account? <a href="{% url 'login' %}">Log In</a></p>
 {% endblock %}
 
 {% block scripts %}
