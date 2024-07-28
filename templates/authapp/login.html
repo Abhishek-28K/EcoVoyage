@@ -162,7 +162,7 @@
         <h1>Welcome</h1>
         <p>Login in to your account to continue</p>
         <form>
-            <input type="text" placeholder="Email" required>
+            <input type="text" placeholder="Username" id ="Email"required>
             <input type="password" id="password" placeholder="Password" required>
             <div class="links">
                 <label>
@@ -170,13 +170,13 @@
                 </label>
             </div>
             <div class="links">
-                <a href="#">Forgot your password?</a>
+                <a href="{% url 'changepass' %}">Forgot your password?</a>
             </div>
             <button type="submit">LOG IN</button>
         </form>
         <div id="bottombg">
             <div id="bottomcurve">
-                <p>Don't have an account? <a href="#">Sign Up</a></p>
+                <p>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
             </div>
         </div>
     </div>

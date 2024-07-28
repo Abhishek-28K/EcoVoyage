@@ -8,7 +8,7 @@ def loginpage(request):
     return render(request,'authapp/login.html')
 
 def signinpage(request):
-    return render(request,'authapp/signinpage')
+    return render(request,'authapp/signin.html')
 
 def changepass(request):
-    return render(request,'authapp/changepass')
+    return render(request,'authapp/changepass.html')
