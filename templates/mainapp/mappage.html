@@ -24,14 +24,16 @@
             <input type="date" id="date" name="date" placeholder="Date (YYYY-MM-DD)" required />
             <label for="time-taken">Time Taken</label>
             <input type="text" id="time-taken" name="time_taken" placeholder="Time In Minutes" required />
-            <label for="mode-of-transport">Mode Of Transport</label>
+            <label for="mode-of-transport">Mode Of Travel</label>
             <select id="mode-of-transport" name="mode_of_transport" required>
                 <option value="">Select Mode</option>
                 <option value="bus">Bus</option>
                 <option value="train">Train</option>
                 <option value="metro">Metro</option>
                 <option value="car">Car</option>
-                <option value="two_wheeler">Two Wheeler</option>
+                <option value ="rickshaw">Rickshaw</option>
+                <option value="bike">Bike</option>
+                <option value = "scooter">Activa/Scooter</option>
                 <option value="bicycle">Bicycle</option>
                 <option value="walk">Walk</option>
             </select>
@@ -44,6 +46,11 @@
             </div>
             <button type="submit" id="store-button">Submit</button>
         </form>
+        {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
     </div>
     <script>
         const storeDistanceDataUrl = "{% url 'store_distance_data' %}";

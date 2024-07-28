@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json,static
+from django.contrib import messages
 def mappage(request):
     return render(request, 'mainapp/mappage.html')
 
@@ -20,11 +21,32 @@ def store_distance_data(request):
         time_taken = data.get('time_taken')
         is_electric = data.get('is_electric')
         mode_of_transport = data.get('mode_of_transport')
-        
-        print(source_add, source_lat, source_lon, dest_add, destination_lon, destination_lat, distance,
-            date, time_taken, is_electric, mode_of_transport, sep="\n")
-
+        if is_electric =="yes":
+            mode_of_transport = "e" + mode_of_transport
+        list_of_transport = {
+            "bus": 20.55,
+            "ebus": 2.65,
+            "train": 41,
+            "etrain": 14,
+            "car": 128,
+            "ecar": 66.67,
+            "metro": 5,
+            "bicycle": 0,
+            "walk": 0,
+            "bike": 74,
+            "ebike": 22,
+            "rickshaw": 25.67,
+            "erickshaw": 3.33,
+            "scooter": 55,
+            "escooter": 22
+        }
+        carbonfootrpint=0.00
+        for a in list_of_transport:
+            if mode_of_transport == a:
+                carbonfootrpint = list_of_transport[a] * float(distance)
+        print (source_add, source_lat, source_lon, dest_add, destination_lon, destination_lat, distance,
+            date, time_taken, is_electric, mode_of_transport,carbonfootrpint, sep="\n")
+        context = {"success":"You have Travelled {distance} and generated {carbonfootprint}gms of carbomn footprint"}
+        return render(request,'mainapp/mappage.html',context=context)
         # You can save the data to the database here
-
-        return JsonResponse({'message': 'Data stored successfully.'})
     return JsonResponse({'message': 'Invalid request method.'}, status=400)

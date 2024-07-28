@@ -10,9 +10,11 @@ class DistanceForm(forms.Form):
             ('train', 'Train'),
             ('metro', 'Metro'),
             ('car', 'Car'),
-            ('two_wheeler', 'Two Wheeler'),
+            ('bike', 'Bike'),
             ('bicycle', 'Bicycle'),
-            ('walk', 'Walk')
+            ('walk', 'Walk'),
+            ('rickshaw','Rickshaw'),
+            ('activa','Activa')
         ],
         label='Mode of Transport'
     )
